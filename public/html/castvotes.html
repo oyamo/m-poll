@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mwerevu Poll</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <style>
+   
+        h4{
+            font-size: small;
+
+        }
+        .title{
+            margin-top: 70px;
+        }
+        .rules{
+            font-size: .5em;
+        }
+        .btn{
+            width: 70%;
+        }
+        .mnav{
+            width: 100%;
+            height: 40px;
+            padding: 5px;
+        }
+        footer{
+            margin-top: 50px;
+            padding: 10px;
+            text-align: center;
+        }
+       
+        .card{
+            background: linear-gradient(red, orange);
+            margin: 5px 0;
+        }
+        .container{
+            margin-top: 20px;
+        }
+        .heading{
+            color: #fff;
+            margin: 0 5px 0 5px;
+        }
+        .detail{
+            font-size: 1.5em;
+            color: #f1e8e8;
+            font-weight: bolder;
+            margin: 0 5px 0 5px;
+
+        }
+        hr{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        label{
+            font-size: 1em;
+        }
+        fieldset{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class='mnav bg-dark'><div class="text-light">M-POLL APP</div></div>
+    <form class="container" method="POST">
+        <h3>All candidates</h3>
+        <h4>Chair person</h4>
+        <fieldset id="chair_person">
+            <div class='form-check'> 
+                <input type="radio" value="Ondoro Lawrence" name='chair_person' id="ondoro" class="form-check-input" checked=false>
+                <label class='form-check-label' for='#ondoro'>Ondoro Lawrence</label>
+            </div>
+        </fieldset>
+        <h4>Deputy chairperson</h4>
+        <fieldset id="deputy_chair">
+            <div class='form-check'>
+                <input type="radio" value="George Opondo" id="george_opondo" name='deputy_chair' class="form-check-input" checked=false>
+                <label class='form-check-label' for='george_opondo'>George Opondo</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" value="Zainab Odhiambo" id="zainab_odhiambo" name='deputy_chair' class="form-check-input" checked=false>
+                <label class='form-check-label' for='zainab_odhiambo'>Zainab Odhiambo</label>
+            </div>
+        </fieldset>
+        <h4>Sec gen</h4>
+        <fielset id="sec_gen">
+            <div class='form-check'>
+                <input type="radio" name="sec_gen" value='Robinson Davies Kaphwawi' id="ondoro" class="form-check-input" checked=false>
+                <label class='form-check-label'>Robinson Davies Kaphwawi</label>
+            </div>
+        </fielset>
+        <h4>Ass. Sec Gen</h4>
+        <fieldset id="ass_sec_gen">
+            <div class='form-check'>
+                <input type="radio" name="ass_sec_gen" id="evance" class="form-check-input" checked=false>
+                <label for='evance' class='form-check-label'>Evance Okoth Oyamo</label>
+            </div>
+            <div class="form-ckeck">
+                <input type="radio" value='Dwincan Owino' name="ass_sec_gen" id="dwin" class="form-check-input" checked=false>
+                <label for='dwin' class='form-check-label'>Dwincan Owino</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" value="Philabel Achieng" name="ass_sec_gen" id="phil" class="form-check-input" checked=false>
+                <label for='phil' class='form-check-label'>Philabel Achieng</label>
+            </div>
+            <div class="form-ckeck">
+                <input id='Milded' type="radio" value="Milded J. Apiyo" name="ass_sec_gen" id="ondoro" class="form-check-input" checked=false>
+                <label for='Milded' class='form-check-label'>Milded J. Apiyo</label>
+            </div>
+        </fieldset>
+        <h4>Organising Secretary</h4>
+        <fieldset id="org_sec">
+            <div class='form-check'>
+                <input type="radio" value="Othim Wellington" name="org_sec" id="ondoro" class="form-check-input" checked=false>
+                <label>Othim Wellington</label>
+            </div>
+        </fieldset>
+        <h4>Treasury</h4>
+        <fieldset id="treasury">
+            <div class='form-check'>
+                <input type="radio" value="Beatrice Odhiambo" name="treasury" id="ondoro" class="form-check-input" checked=false>
+                <label>Beatrice Odhiambo</label>
+            </div>
+        </fieldset>
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+    <p class="text-secondary">Raise any complaints to the database admin on 0793875319</p>
+    <footer class="bg-dark text-light">
+        &copy; 2020 - Oyamo
+    </footer>
+</body>
+</html>

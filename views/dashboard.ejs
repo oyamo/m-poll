@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mwerevu Poll</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <style>
+        .title{
+            margin-top: 70px;
+        }
+        .rules{
+            font-size: .5em;
+        }
+        .btn{
+            width: 70%;
+        }
+        .mnav{
+            width: 100%;
+            height: 40px;
+            padding: 5px;
+        }
+        footer{
+            margin-top: 50px;
+            padding: 10px;
+            text-align: center;
+        }
+       
+        .card{
+            background: linear-gradient(red, orange);
+            margin: 5px 0;
+        }
+        .container{
+            margin-top: 20px;
+        }
+        .heading{
+            color: #fff;
+            margin: 0 5px 0 5px;
+        }
+        .detail{
+            font-size: 1.5em;
+            color: #f1e8e8;
+            font-weight: bolder;
+            margin: 0 5px 0 5px;
+
+        }
+        hr{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class='mnav bg-dark'><div class="text-light">M-POLL APP</div></div>
+    <div class="container">
+        <p>Hey, <%= name %></p>
+        <p>This is the dashboard. Click cast vote button to start your election. Please follow the rules as the consequense is voter disqualification</p>
+       <div class="card">
+           <h3 class='heading'>Registered Voters</h3>
+           <hr>
+           <p class='detail'><%= count %></p>
+       </div> 
+        <div class="card">
+           <h3 class='heading'>Candidates registered</h3>
+           <hr>
+           <p class='detail'>10</p>
+       </div> 
+       <div class="card">
+            <h3 class='heading'>Posts</h3>
+            <hr>
+            <p class='detail'>6</p>
+      </div>       
+    </div>
+    <% if(has_voted !== true) { %>
+    <div class="text-center">
+        <a href="/candidates" class='btn btn-sm btn-outline-danger'>Cast Votes</a>
+    </div>
+    <% }else {%>
+        <div class="text-center">
+            <a href="/results" class='btn btn-sm btn-outline-danger'>See Results</a>
+        </div>
+    <%}%>
+    <footer class="bg-dark text-light">
+        &copy; 2020 - Oyamo
+    </footer>
+</body>
+</html>
