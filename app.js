@@ -252,6 +252,9 @@ app.get('/logout',(req, res)=>{
     })
     res.redirect('/')
 })
+app.get('/favicon.ico',(req,res)=>{
+    res.send("0")
+})
 const port = process.env.PORT || config.server_port;
 app.listen(port, ()=>{
     console.log('server is up and running on'+port)
