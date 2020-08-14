@@ -22,6 +22,8 @@ const MongoStore = require('connect-mongo')(session)
 mongoose.connect(config.connection_string,{
     useNewUrlParser: true,
     useUnifiedTopology: true
+}).catch(err=>{
+    console.log(err)
 })
 
 mongoose.Promise = global.Promise
