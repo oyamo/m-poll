@@ -7,7 +7,7 @@ const config = {
     saveUninitialised: true,
     //Database
     db_name: "polldb",
-    connection_string:"mongodb+srv://Oyamo:brianoti1@poll-app.ietfb.mongodb.net/poll?retryWrites=true&w=majority"
+    connection_string:"mongodb+srv://Oyamo:brianoti1@poll-app.ietfb.gcp.mongodb.net/test?retryWrites=true&w=majority"
 }
 
 module.exports = config
