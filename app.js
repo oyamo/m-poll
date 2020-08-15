@@ -125,6 +125,7 @@ app.get('/register',(req,res)=>{
 })
 
 app.post('/register',(req,res)=>{
+    console.log(req.body)
    if(req.body == undefined || req.body == null){
        console.log('Fields Missing')
        res.redirect('/register')
@@ -136,6 +137,7 @@ app.post('/register',(req,res)=>{
             res.redirect('/register')
        }else{
             let query = { idno: req.body.idno}
+            
             authCollection.find(query).toArray((err, result)=>{
                 if(err){
                     console.log(err)
