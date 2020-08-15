@@ -84,7 +84,20 @@
         <script>
             // Verification function
             function onSubmit(token) {
-                document.getElementById('reg-form').submit();
+               const inputs = document.querySelectorAll('input[required]')
+               let isCorrect = true
+               for (const key in inputs) {
+                   if (inputs.hasOwnProperty(key)) {
+                       const element = inputs[key];
+                       if(element.value.length == 0){
+                           alert("Fill the whole of the form")
+                           isCorrect = true
+                           break
+                       }
+                   }
+               }
+            document.getElementById('reg-form').submit();
+               
             }
             // reCAPTCHA Expired callback function
             function captchaExpired() {
