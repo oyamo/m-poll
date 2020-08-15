@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo 'No tests Yet'",
-    "start": "node app"
+    "start": "node --experimental-modules app.js"
   },
   "keywords": [
     "Elections",
@@ -19,6 +19,7 @@
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.3",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.6.1",
