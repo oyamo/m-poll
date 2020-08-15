@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Elections App",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo 'No tests Yet'",
-    "start": "node --experimental-modules app.js"
+    "start": "node  app"
   },
   "keywords": [
     "Elections",
