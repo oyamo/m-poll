@@ -176,44 +176,45 @@ app.get('/castvotes',(req,res)=>{
 })
 
 app.post('/castvotes',(req,res)=>{
-    if(req.session.loggedin){
-        console.log(req.session)
-        let query = { idno: req.session.idno}
-        authCollection.find(query).toArray((err, result)=>{
-            if(err){
-                console.log(err)
-                res.send("appError 398")
-            }else{
-                if(result.length == 1){
-                    const me = result[0]
-                    console.log(me)
-                    if(me.has_voted == undefined && me.has_voted != true){
-                        let votes = req.body;
-                        votes.voter = req.session.idno
-                        votesCollection.insertOne(
-                            votes
-                        ).then(result=>{
-                            authCollection.findOneAndUpdate(query,{
-                                '$set':{has_voted: true}
-                            },(err,doc)=>{
-                                console.log(err)
-                            })
+    res.send("<h1>Voting closed</h1>")
+    // if(req.session.loggedin){
+    //     console.log(req.session)
+    //     let query = { idno: req.session.idno}
+    //     authCollection.find(query).toArray((err, result)=>{
+    //         if(err){
+    //             console.log(err)
+    //             res.send("appError 398")
+    //         }else{
+    //             if(result.length == 1){
+    //                 const me = result[0]
+    //                 console.log(me)
+    //                 if(me.has_voted == undefined && me.has_voted != true){
+    //                     let votes = req.body;
+    //                     votes.voter = req.session.idno
+    //                     votesCollection.insertOne(
+    //                         votes
+    //                     ).then(result=>{
+    //                         authCollection.findOneAndUpdate(query,{
+    //                             '$set':{has_voted: true}
+    //                         },(err,doc)=>{
+    //                             console.log(err)
+    //                         })
                     
-                            res.redirect('/')
-                        }).catch(err=>{
+    //                         res.redirect('/')
+    //                     }).catch(err=>{
 
-                        })
-                    }else{
-                        res.send("Youre trying to vote more than once")
-                    }                                                                      
-                }else{
-                    res.send("App Error 399")
-                }
-            }
-        })
-    }else{
-        res.redirect('/')
-    }
+    //                     })
+    //                 }else{
+    //                     res.send("Youre trying to vote more than once")
+    //                 }                                                                      
+    //             }else{
+    //                 res.send("App Error 399")
+    //             }
+    //         }
+    //     })
+    // }else{
+    //     res.redirect('/')
+    // }
 })
 app.get('/results',(req,res)=>{
     let ondoro = 'Ondoro Lawrence'
