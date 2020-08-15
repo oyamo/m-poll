@@ -7,6 +7,9 @@ const express = require('express')
 const cookieparser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+import {google} from 'googleapis'
+
+
 const app = express()
 
 
@@ -99,7 +102,7 @@ app.post('/login', (req, res)=>{
              req.body.idno == null){
             // if body
             res.redirect('/login')
-        }else{
+        }else{            
             let query = {idno: req.body.idno, password: req.body.password}
             authCollection.find(query).toArray((err,result)=>{
                 if(result.length == 1){
@@ -126,7 +129,14 @@ app.get('/register',(req,res)=>{
 
 app.post('/register',(req,res)=>{
     console.log(req.body)
-   if(req.body == undefined || req.body == null){
+   if(req.body == undefined ||
+     req.body == null 
+     || req.body['g-recaptcha-response'] == null
+     || req.body['g-recaptcha-response'] == undefined
+     || req.body['g-recaptcha-response'] == 0
+     || req.body['g-recaptcha-response'] == '0'
+     
+   ){
        console.log('Fields Missing')
        res.redirect('/register')
    }else{
@@ -136,31 +146,73 @@ app.post('/register',(req,res)=>{
              console.log('Password not match')
             res.redirect('/register')
        }else{
-            let query = { idno: req.body.idno}
             
-            authCollection.find(query).toArray((err, result)=>{
-                if(err){
-                    console.log(err)
-                    res.redirect('/register')
-                }else{
-                    if(result.length == 1){
-                        console.log('user exists')
-                        res.redirect('/register')
-                    }else{
-                        req.session.loggedin = true
-                        req.session.idno = req.body.idno
-                        req.session.fullname = req.body.fullnames
-                        console.log(req.body)
-                        authCollection.insertOne(req.body).then((result)=>{
-                            res.redirect('/')
-                        })
-                    }
-                }
+            req.session.previousAuth = req.body
+            const previousAuth = req.session.previousAuth
+            const recaptcha = previousAuth['g-recaptcha-response']
+            const phoneNumber = previousAuth.phone_number
+
+            const identityTK = google.identitytoolkit({
+                auth:"AIzaSyAb_tvKrFhbdVnzGCAI7eHcjMY5JGQGaFE",
+                version:'v3'
             })
+
+            const response = await identityTK.relyingparty.sendVerificationCode({
+                phoneNumber,
+                recaptchaToken: recaptcha
+            })
+
+            const sessionInfo = response.data.sessionInfo
+            console.log(response)
+            console.log(response)
+            res.sendFile(__dirname+'/public/html/verify.html')
+            // let query = { idno: req.body.idno}
+            // authCollection.find(query).toArray((err, result)=>{
+            //     if(err){
+            //         console.log(err)
+            //         res.redirect('/register')
+            //     }else{
+            //         if(result.length == 1){
+            //             console.log('user exists')
+            //             res.redirect('/register')
+            //         }else{
+            //             req.session.loggedin = true
+            //             req.session.idno = req.body.idno
+            //             req.session.fullname = req.body.fullnames
+            //             console.log(req.body)
+            //             authCollection.insertOne(req.body).then((result)=>{
+            //                 res.redirect('/')
+            //             })
+            //         }
+            //     }
+            // })
        }
    }
 })
 
+app.post('verifyCode',(req, res)=>{
+
+    if(req.session.loggedin){
+        res.redirect('/')
+    }else{
+        if(req.session.verification){
+            const previousAuth = req.session.previousAuth
+            const recaptcha = previousAuth['g-recaptcha-response']
+            const phoneNumber = previousAuth.phone_number
+
+            const identityTK = google.identitytoolkit({
+                auth:"AIzaSyAb_tvKrFhbdVnzGCAI7eHcjMY5JGQGaFE",
+                version:'v3'
+            })
+
+            const response = await identityTK.relyingparty.sendVerificationCode({
+                phoneNumber,
+                recaptchaToken: recaptcha
+            })
+            console.log(response)
+        }
+    }
+})
 app.get('/candidates',(req, res)=>{
     
     if(req.session.loggedin){
