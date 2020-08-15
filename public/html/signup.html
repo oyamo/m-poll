@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- 6LcK-7sZAAAAAG6ox3VAAIWXol0ymUjPtXk89iGm -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mwerevu Poll</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/mdb.min.css" rel="stylesheet" />
-    <script src="https://google.com/recaptcha/api.js" async defer></script>
-  
     <style>
         html {
             height: 100%;
@@ -45,7 +42,7 @@
     <div class='mnav bg-dark'><div class="text-light">M-POLL APP</div></div>
     <div class="container">
         <h2>Register</h2>
-        <form method='post' id='reg-form'>
+        <form method='post'>
             <p class="text-secondary">To avoid disqualification, enter details carefully</p>
             <div class="form-group">
                 <label for="" class="form-control-label">Full names</label><br>
@@ -59,7 +56,7 @@
                 <label for="" class="form-control-label">Phone number</label><br>
                 <input type="tel" class="form-control" name='phone_number' required>
             </div>
-            <p class='warning text-secondary'>You will have to verify your Phone number</p>
+            <p class='warning text-secondary'>You won't register unless passwords match</p>
             <div class="form-group">
                 <label for="" class="form-control-label">Password</label><br>
                 <input type="password" class="form-control" name='password' required>
@@ -70,43 +67,8 @@
                 <label for="" class="form-control-label">Confirm Password</label><br>
                 <input type="password" class="form-control" name='confirm' required>
             </div>
-            <input 
-                disabled
-                type="submit"
-                class="btn btn-primary btn-sm g-recaptcha" 
-                value="register"
-                data-sitekey="6LegKb8ZAAAAABeEWamf7LXSlVcHWtCH_hdNN3h-"
-                data-callback='onSubmit' 
-                data-action='submit'
-
-            />
+            <input type="submit" class="btn btn-primary btn-sm" value="register">
         </form>
-        <script>
-            // Verification function
-            function onSubmit(token) {
-               const inputs = document.querySelectorAll('input[required]')
-               let isCorrect = true
-               for (const key in inputs) {
-                   if (inputs.hasOwnProperty(key)) {
-                       const element = inputs[key];
-                       if(element.value.length == 0){
-                           alert("Fill the whole of the form")
-                           isCorrect = false
-                           break
-                       }
-                   }
-               }
-            if(isCorrect){
-                document.getElementById('reg-form').submit();
-            }
-               
-            }
-            // reCAPTCHA Expired callback function
-            function captchaExpired() {
-                window.location.reload();
-            }
-
-        </script>
     </div>
     <footer class="bg-dark text-light">
         &copy; 2020 - Oyamo
