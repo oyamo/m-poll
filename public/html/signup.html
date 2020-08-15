@@ -96,7 +96,9 @@
                        }
                    }
                }
-            document.getElementById('reg-form').submit();
+            if(isCorrect){
+                document.getElementById('reg-form').submit();
+            }
                
             }
             // reCAPTCHA Expired callback function
